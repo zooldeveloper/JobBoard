@@ -1,0 +1,7 @@
+{
+  "name": "JobPortal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
