@@ -8,8 +8,8 @@
 *.tmp.*
 *.sublime-project
 *.sublime-workspace
-.DS_Store
-**/.DS_Store
+*.DS_Store
+**/node_modules
 Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
@@ -27,7 +27,6 @@ npm-debug.log*
 !/.vscode/extensions.json
 /coverage
 /dist
-/node_modules
 /platforms
 /plugins
 /www
