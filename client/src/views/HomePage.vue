@@ -1,33 +1,26 @@
 <template>
-	<ion-page>
-		<ion-header :translucent="true">
-			<ion-toolbar>
-				<ion-title>Home</ion-title>
-			</ion-toolbar>
-		</ion-header>
-
-		<ion-content :fullscreen="true">
-			<ion-header collapse="condense">
-				<ion-toolbar>
-					<ion-title size="large">Blank</ion-title>
-				</ion-toolbar>
-			</ion-header>
-			<ion-item v-for="item in [0,1,2,3]" :key="item">
-				{{ item }}
-			</ion-item>
-		</ion-content>
-	</ion-page>
+	<base-layout pageTitle="Candidats Intérim">
+		<h1 class="mt-12 text-3xl font-normal">Trouvez plus de 20+ 
+			<span class="text-yallow">d'offres d'emploi</span>
+		</h1>
+		<search-filter></search-filter>
+	</base-layout>
 </template>
 
-<script setup>
+<script>
 import {
-	IonContent,
-	IonHeader,
-	IonPage,
-	IonTitle,
-	IonToolbar,
+	IonList,
 	IonItem,
 } from "@ionic/vue";
+import SearchFilter from '../components/SearchFilter.vue';
+
+export default {
+    components: {
+		IonList,
+		IonItem,
+		SearchFilter,
+    },
+}
 </script>
 
 <style scoped>
@@ -57,5 +50,9 @@ import {
 
 #container a {
 	text-decoration: none;
+}
+
+#container h1 {
+	font-size: 15rem;
 }
 </style>
