@@ -17,6 +17,16 @@ app.get('/jobs', (req, res, next) => {
     }
 });
 
+app.get('/jobs/:id', (req, res, next) => {
+    const job = data.find(job => job.id == req.params.id);
+    
+    try {
+        res.status(200).json(job);
+    } catch (error) {
+        res.status(400).json({ error });
+    }
+});
+
 const server = http.createServer(app);
 
 const port = process.env.PORT || 3001;
