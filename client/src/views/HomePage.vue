@@ -1,9 +1,15 @@
 <template>
 	<base-layout pageTitle="Candidats Intérim">
-		<h1 class="mt-12 text-3xl font-normal">Trouvez plus de 20+ 
-			<span class="text-yallow">d'offres d'emploi</span>
-		</h1>
-		<search-filter></search-filter>
+		<main class="max-w-4xl m-auto">
+			<h1 class="mt-12 text-3xl font-normal">Trouvez plus de 20+ 
+				<span class="text-yallow">d'offres d'emploi</span>
+			</h1>
+			<job-search></job-search>
+			<div class="flex justify-between mt-12 gap-5">
+				<job-filter></job-filter>
+				<job-description></job-description>
+			</div>
+		</main>
 	</base-layout>
 </template>
 
@@ -12,19 +18,23 @@ import {
 	IonList,
 	IonItem,
 } from "@ionic/vue";
-import SearchFilter from '../components/SearchFilter.vue';
+import JobSearch from '../components/JobSearch.vue';
+import JobFilter from '../components/JobFilter.vue';
+import JobDescription from '../components/JobDescription.vue';
 
 export default {
     components: {
 		IonList,
 		IonItem,
-		SearchFilter,
+		JobSearch,
+		JobFilter,
+		JobDescription,
     },
 }
 </script>
 
 <style scoped>
-#container {
+/* #container {
 	text-align: center;
 
 	position: absolute;
@@ -50,9 +60,5 @@ export default {
 
 #container a {
 	text-decoration: none;
-}
-
-#container h1 {
-	font-size: 15rem;
-}
+} */
 </style>

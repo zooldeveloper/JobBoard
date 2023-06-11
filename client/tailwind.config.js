@@ -5,6 +5,8 @@ export default {
         colors: {
             'brown': '#222121',
             'yallow': '#f8b430',
+            'gray': '#edf7f6',
+            'olive': '#006c67',
             'white': '#ffffff',
             'black': '#000000'
         },
