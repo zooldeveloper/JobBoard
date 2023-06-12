@@ -13,7 +13,7 @@
 		"job_title": "Livreur",
 		"job_industry": "Livraison",
 		"hourly_rate": 17.0,
-		"contract_type": "Intérim",
+		"contract_type": "CDD",
 		"city": "Marseille",
 		"zip_code": "13001"
 	},
@@ -31,7 +31,7 @@
 		"job_title": "Caissier de Supermarché",
 		"job_industry": "Opérations de Supermarché",
 		"hourly_rate": 12.0,
-		"contract_type": "Intérim",
+		"contract_type": "CDD",
 		"city": "Toulouse",
 		"zip_code": "31000"
 	},
@@ -166,7 +166,7 @@
 		"job_title": "Opérateur de Livraison",
 		"job_industry": "Livraison",
 		"hourly_rate": 15.0,
-		"contract_type": "Intérim",
+		"contract_type": "CDI",
 		"city": "Nîmes",
 		"zip_code": "30000"
 	},

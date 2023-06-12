@@ -3,16 +3,20 @@
 		<ion-row>
 			<ion-col>
 				<ion-searchbar
-					placeholder="Métier ou mots-clés"
-					class="text-black max-w-md"
+                    class="text-black max-w-md"
+                    placeholder="Métier ou mots-clés"
+                    v-model="jobTitleValue"
+                    @input="setUserInput('job_title')"
 				>
 				</ion-searchbar>
 			</ion-col>
 			<ion-col>
 				<ion-searchbar
-					:search-icon="locationOutline"
+                    class="text-black max-w-md"
 					placeholder="Ville ou code postal"
-					class="text-black max-w-md"
+                    v-model="zipCodeValue"
+					:search-icon="locationOutline"
+                    @input="setUserInput('zip_code')"
 				>
 				</ion-searchbar>
 			</ion-col>
@@ -43,8 +47,20 @@ export default {
 		IonSearchbar,
 		IonButton,
 	},
-	setup() {
-		return { locationOutline };
+	data() {
+		return { 
+            locationOutline,
+            jobTitleValue: '',
+            zipCodeValue: '',
+        };
 	},
+    methods: {
+        setUserInput(searchType) {
+            if(searchType === 'job_title') {
+                this.$emit('set-user-input', this.jobTitleValue);
+            }
+            //  else this.$emit('set-user-input', this.zipCodeValue);
+        }
+    }
 };
 </script>

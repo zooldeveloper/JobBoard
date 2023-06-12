@@ -4,9 +4,9 @@
 			<h1 class="mt-12 text-3xl font-bold">Trouvez plus de 20+ 
 				<span class="text-yallow">d'offres d'emploi</span>
 			</h1>
-			<job-search></job-search>
+			<job-search v-on:set-user-input="setUserInput"></job-search>
 			<div class="flex justify-between mt-12 gap-5">
-				<job-filter></job-filter>
+				<job-filter :filterJobs="filterJobs"></job-filter>
 				<div>
 					<job-brief-description :jobs="jobs"></job-brief-description>
 				</div>
@@ -34,7 +34,8 @@ export default {
     },
 	data() {
 		return {
-			jobs: []
+			data: [],
+			jobs: this.data
 		}
 	},
 	mounted() {
@@ -44,9 +45,31 @@ export default {
 		getAllJobs() {
 			fetch('http://localhost:3001/jobs')
 				.then(res => res.json())
-				.then(data => this.jobs = data)
+				.then(data => {
+					this.data = data
+					this.jobs = this.data
+				})
 				.catch(err => console.log(err))
-		}
+		},
+		setUserInput(jobTitle) {
+			this.jobs = this.data;
+			if(jobTitle.trim().length > 0) {
+				this.jobs = this.jobs.filter(job => 
+					job.job_title
+						.toLowerCase()
+						.includes(jobTitle.trim().toLowerCase()));
+			} 
+		},
+		filterJobs(filterType, filterValue) {
+			this.jobs = this.data
+			if(filterValue !== 'all') {
+				this.jobs = this.jobs.filter(job => {
+					return	job[filterType]
+							.toLowerCase()
+							.includes(filterValue.trim().toLowerCase())
+				})
+			}
+		},
 	}
 }
 </script>
