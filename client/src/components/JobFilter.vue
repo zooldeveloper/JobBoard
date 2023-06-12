@@ -19,7 +19,7 @@
             </ion-checkbox>
         </div>
         <div class="flex flex-col my-5">
-            <h2 class="mb-5 font-bold">Secteur d'Acctivité</h2>
+            <h2 class="mb-5 font-bold">Secteur d'Activité</h2>
             <ion-checkbox 
                 v-for="(jobIndustry, index) in jobIndustries"
                 :key="index"
@@ -58,7 +58,7 @@ export default {
             jobIndustries: [ 
                 'Livraison', 
                 'Logistique', 
-                'Prépration de colis', 
+                'Préparation de colis', 
                 'Opérations de supermarché'
             ],
         }

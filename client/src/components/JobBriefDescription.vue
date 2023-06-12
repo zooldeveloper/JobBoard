@@ -7,7 +7,10 @@
         <div class="!w-10 !h-10 rounded-full bg-olive"></div>
 		<ion-card-header class="w-fit">
 			<ion-card-title>{{ job.job_title }}</ion-card-title>
-			<ion-card-subtitle>{{ job.city }}</ion-card-subtitle>
+			<div class="flex justify-center gap-1">
+				<ion-card-subtitle>{{ job.zip_code }},</ion-card-subtitle>
+				<ion-card-subtitle>{{ job.city }}</ion-card-subtitle>
+			</div>
 		</ion-card-header>
 		<ion-button
             :router-link="`/jobs/${job.id}`"

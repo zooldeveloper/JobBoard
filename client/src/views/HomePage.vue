@@ -35,7 +35,7 @@ export default {
 	data() {
 		return {
 			data: [],
-			jobs: this.data
+			jobs: this.data,
 		}
 	},
 	mounted() {
@@ -51,22 +51,28 @@ export default {
 				})
 				.catch(err => console.log(err))
 		},
-		setUserInput(jobTitle) {
+
+		setUserInput({ searchType, userInputValue }) {
 			this.jobs = this.data;
-			if(jobTitle.trim().length > 0) {
-				this.jobs = this.jobs.filter(job => 
-					job.job_title
-						.toLowerCase()
-						.includes(jobTitle.trim().toLowerCase()));
-			} 
+
+			const isNumericalCharacter = /\d/.test(userInputValue);
+
+			if(userInputValue.trim().length > 0) {
+				this.jobs = this.jobs.filter(job => {
+					if(searchType === 'city' && isNumericalCharacter) {
+							return job.zip_code.toLowerCase().includes(userInputValue.trim().toLowerCase());
+					} else {
+						return job[searchType].toLowerCase().includes(userInputValue.trim().toLowerCase());
+					}
+				});
+			}
 		},
+
 		filterJobs(filterType, filterValue) {
 			this.jobs = this.data
 			if(filterValue !== 'all') {
 				this.jobs = this.jobs.filter(job => {
-					return	job[filterType]
-							.toLowerCase()
-							.includes(filterValue.trim().toLowerCase())
+					return	job[filterType].toLowerCase().includes(filterValue.trim().toLowerCase())
 				})
 			}
 		},

@@ -14,9 +14,9 @@
 				<ion-searchbar
                     class="text-black max-w-md"
 					placeholder="Ville ou code postal"
-                    v-model="zipCodeValue"
+                    v-model="locationValue"
 					:search-icon="locationOutline"
-                    @input="setUserInput('zip_code')"
+                    @input="setUserInput('city')"
 				>
 				</ion-searchbar>
 			</ion-col>
@@ -51,15 +51,17 @@ export default {
 		return { 
             locationOutline,
             jobTitleValue: '',
-            zipCodeValue: '',
+            locationValue: null,
         };
 	},
     methods: {
         setUserInput(searchType) {
             if(searchType === 'job_title') {
-                this.$emit('set-user-input', this.jobTitleValue);
+                this.$emit('set-user-input', { searchType: searchType, userInputValue: this.jobTitleValue});
             }
-            //  else this.$emit('set-user-input', this.zipCodeValue);
+             else {
+                this.$emit('set-user-input', { searchType: searchType, userInputValue: this.locationValue })
+            };
         }
     }
 };
