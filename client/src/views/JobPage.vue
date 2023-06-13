@@ -1,6 +1,6 @@
 <template>
     <base-layout 
-        pageTitle="Agen de Stockage"
+        pageTitle="Candidats Intérim"
         pageDefaultBackLink="/jobs"
     >
     <main class="max-w-4xl mt-10 m-auto p-3">
@@ -30,7 +30,6 @@ export default {
 				.then(res => res.json())
 				.then(data => this.job = data)
 				.catch(err => console.log(err));
-                console.log(this.job)
         }
     }
 }

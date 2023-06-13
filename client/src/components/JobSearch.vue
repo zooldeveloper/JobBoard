@@ -58,10 +58,10 @@ export default {
     methods: {
         setUserInput(searchType) {
             if(searchType === 'job_title') {
-                this.$emit('set-user-input', { searchType: searchType, userInputValue: this.jobTitleValue});
+                this.$emit('set-user-inputs', { searchType: searchType, userInputValue: this.jobTitleValue});
             }
              else {
-                this.$emit('set-user-input', { searchType: searchType, userInputValue: this.locationValue })
+                this.$emit('set-user-inputs', { searchType: searchType, userInputValue: this.locationValue })
             };
         }
     }

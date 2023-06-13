@@ -3,8 +3,8 @@
         <div class="flex justify-between mb-8">
             <div class="!w-14 !h-14 rounded-full bg-yallow"></div>
                     <ion-card-header class="w-fit">
-                        <ion-card-title class="text-4xl font-bold">{{ 'Agent de Stockage' }}</ion-card-title>
-                        <ion-card-subtitle class="text-left text-sm text-olive">{{ 'Détails de l\'offre' }}</ion-card-subtitle>
+                        <ion-card-title class="text-4xl text-olive font-bold">{{ 'Agent de Stockage' }}</ion-card-title>
+                        <ion-card-subtitle class="text-left text-base font-normal">{{ 'Détails de l\'offre' }}</ion-card-subtitle>
                     </ion-card-header>
         </div>
         <icon-content class="text-black">
@@ -46,10 +46,12 @@ export default {
         }
     },
     watch: {
-        job: function () {
-            this.setJob();
-        }, 
-        immediate: true
+        job: {
+            handler() {
+                this.setJob();
+            },
+            immediate: true
+        }
     },
     methods: {
         setJob() {

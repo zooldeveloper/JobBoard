@@ -4,9 +4,9 @@
 			<h1 class="mt-12 text-3xl font-bold">Trouvez plus de 20+ 
 				<span class="text-yallow">d'offres d'emploi</span>
 			</h1>
-			<job-search v-on:set-user-input="setUserInput"></job-search>
+			<job-search v-on:set-user-inputs="setUserInputs"></job-search>
 			<div class="flex justify-between mt-12 gap-5">
-				<job-filter :filterJobs="filterJobs"></job-filter>
+				<job-filter v-on:set-job-filters="setJobFilters"></job-filter>
 				<div>
 					<job-brief-description 
 						:jobs="jobs"
@@ -41,6 +41,7 @@ export default {
 			data: [],
 			jobs: this.data,
 			inexistedValue: '',
+			contractTypes: [],
 		}
 	},
 	mounted() {
@@ -57,7 +58,7 @@ export default {
 				.catch(err => console.log(err))
 		},
 		
-		setUserInput({ searchType, userInputValue }) {
+		setUserInputs({ searchType, userInputValue }) {
 			this.jobs = this.data;
 
 			const isNumericalCharacter = /\d/.test(userInputValue);
@@ -74,12 +75,27 @@ export default {
 			if(this.jobs.length < 1) this.inexistedValue = userInputValue;
 		},
 
-		filterJobs(filterType, filterValue) {
+		setJobFilters({ filterType, filterValues }) {
+
 			this.jobs = this.data
-			if(filterValue !== 'all') {
-				this.jobs = this.jobs.filter(job => {
-					return	job[filterType].toLowerCase().includes(filterValue.trim().toLowerCase())
-				})
+
+			if(filterType !== 'all') {
+				let FinalFilteredJobs = [];
+				
+				for(let i=0; i<filterValues.length; i++) {
+					let temperaryFilteredJobs = this.jobs.filter(job => {
+						if(job[filterType] == filterValues[i].title && filterValues[i].selected) {
+							return job[filterType].includes(filterValues[i].title);
+						}
+					});
+
+					if(temperaryFilteredJobs[i] !== undefined) {
+						temperaryFilteredJobs.forEach(job => {
+							FinalFilteredJobs.push(job);
+						});
+					}
+				}
+				this.jobs = FinalFilteredJobs;
 			}
 		},
 	}

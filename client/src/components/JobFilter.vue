@@ -4,18 +4,19 @@
             color="secondary"
             fill="outline"
             class="mb-8 normal-case"
-            @click="() => filterJobs('all')"
+            @click="() => this.$emit('set-job-filters', 'all')"
         >
             Tout réinitialiser
         </ion-button>
         <div class="flex flex-col mb-7">
             <h2 class="mb-5 font-bold">Type de Contrat</h2>
             <ion-checkbox 
-                v-for="(contractType, index) in contractTypes"
-                :key="index"
-                @ionChange="() => filterJobs('contract_type', contractType)"
+                v-for="contractType in contractTypes"
+                :key="contractType.id"
+                v-model="contractType.selected"
+                
             >
-                {{ contractType }}
+                {{ contractType.title }}
             </ion-checkbox>
         </div>
         <div class="flex flex-col my-5">
@@ -49,12 +50,13 @@ export default {
         IonRange,
         IonButton,
 	},
-    props: {
-        filterJobs: Function
-    },
     data() {
         return {
-            contractTypes: [ 'Intérim', 'CDD', 'CDI'],
+            contractTypes: [ 
+                { id: 1, title: 'Intérim', selected: false },
+                { id: 2, title: 'CDD', selected: false },
+                { id: 3, title: 'CDI', selected: false },
+            ],
             jobIndustries: [ 
                 'Livraison', 
                 'Logistique', 
@@ -68,6 +70,16 @@ export default {
         pinFormatter: (value) => `${value}%`,
       };
     },
+    watch: {
+        contractTypes: {
+            handler() {
+               this.$emit('set-job-filters', { 
+                    filterType: 'contract_type', filterValues: this.contractTypes 
+                });
+            },
+            deep: true
+        }
+    }
 };
 </script>
 
