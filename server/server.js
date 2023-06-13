@@ -1,11 +1,9 @@
 const http = require('http');
 const express = require('express');
 const cors = require('cors');
-
 // require('dotenv').config({});
 
 const data = require('./jobs.json');
-
 const app = express();
 app.use(cors());
 

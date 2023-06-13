@@ -6,7 +6,8 @@
                     class="text-black max-w-md"
                     placeholder="Métier ou mots-clés"
                     v-model="jobTitleValue"
-                    @input="setUserInput('job_title')"
+                    @ionInput="setUserInput('job_title')"
+                    
 				>
 				</ion-searchbar>
 			</ion-col>
@@ -16,7 +17,7 @@
 					placeholder="Ville ou code postal"
                     v-model="locationValue"
 					:search-icon="locationOutline"
-                    @input="setUserInput('city')"
+                    @ionInput="setUserInput('city')"
 				>
 				</ion-searchbar>
 			</ion-col>

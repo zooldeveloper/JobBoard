@@ -20,6 +20,11 @@
             Voir l'offre
         </ion-button>
 	</ion-card>
+	<p v-if="jobs !== undefined && jobs.length < 1" >
+		<ion-text color="warning"><ion-icon :icon="warning"></ion-icon></ion-text>
+		Pas d'offres trouvés pour votre recherche : 
+		<b>{{ inexistedValue }}</b> !
+	</p>
 </template>
 
 <script>
@@ -29,7 +34,10 @@ import {
 	IonCardTitle,
 	IonCardSubtitle,
 	IonButton,
+	IonText,
+	IonIcon,
 } from "@ionic/vue";
+import { warning } from 'ionicons/icons';
 
 export default {
 	components: {
@@ -38,12 +46,15 @@ export default {
 		IonCardTitle,
 		IonCardSubtitle,
 		IonButton,
+		IonText,
+		IonIcon,
 	},
     props: {
-        jobs: Array
+        jobs: Array,
+		inexistedValue: String,
     },
 	setup() {
-		return {};
+		return { warning, };
 	},
 };
 </script>

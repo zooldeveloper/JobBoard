@@ -8,7 +8,11 @@
 			<div class="flex justify-between mt-12 gap-5">
 				<job-filter :filterJobs="filterJobs"></job-filter>
 				<div>
-					<job-brief-description :jobs="jobs"></job-brief-description>
+					<job-brief-description 
+						:jobs="jobs"
+						:inexistedValue="inexistedValue"
+					>
+					</job-brief-description>
 				</div>
 			</div>
 		</main>
@@ -36,6 +40,7 @@ export default {
 		return {
 			data: [],
 			jobs: this.data,
+			inexistedValue: '',
 		}
 	},
 	mounted() {
@@ -51,7 +56,7 @@ export default {
 				})
 				.catch(err => console.log(err))
 		},
-
+		
 		setUserInput({ searchType, userInputValue }) {
 			this.jobs = this.data;
 
@@ -65,7 +70,8 @@ export default {
 						return job[searchType].toLowerCase().includes(userInputValue.trim().toLowerCase());
 					}
 				});
-			}
+			} 
+			if(this.jobs.length < 1) this.inexistedValue = userInputValue;
 		},
 
 		filterJobs(filterType, filterValue) {
