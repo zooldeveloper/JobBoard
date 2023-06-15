@@ -76,7 +76,6 @@ export default {
 		},
 
 		setJobFilters({ filterType, filterValues }) {
-
 			this.jobs = this.data
 
 			if(filterType !== 'all') {
@@ -84,7 +83,7 @@ export default {
 				
 				for(let i=0; i<filterValues.length; i++) {
 					let temperaryFilteredJobs = this.jobs.filter(job => {
-						if(job[filterType] == filterValues[i].title && filterValues[i].selected) {
+						if(job[filterType] === filterValues[i].title && filterValues[i].selected) {
 							return job[filterType].includes(filterValues[i].title);
 						}
 					});
@@ -96,6 +95,8 @@ export default {
 					}
 				}
 				this.jobs = FinalFilteredJobs;
+				const isAllcheckboxUnselected = filterValues.every(filterValue => filterValue.selected == false);
+				if(isAllcheckboxUnselected) this.jobs = this.data;
 			}
 		},
 	}

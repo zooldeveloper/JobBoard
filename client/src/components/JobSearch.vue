@@ -52,7 +52,7 @@ export default {
 		return { 
             locationOutline,
             jobTitleValue: '',
-            locationValue: null,
+            locationValue: '',
         };
 	},
     methods: {

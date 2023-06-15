@@ -4,17 +4,17 @@
             color="secondary"
             fill="outline"
             class="mb-8 normal-case"
-            @click="() => this.$emit('set-job-filters', 'all')"
+            @click="resetAllFilters( 'all')"
         >
             Tout réinitialiser
         </ion-button>
         <div class="flex flex-col mb-7">
             <h2 class="mb-5 font-bold">Type de Contrat</h2>
             <ion-checkbox 
-                v-for="contractType in contractTypes"
-                :key="contractType.id"
+                v-for="(contractType, index) in contractTypes"
+                :key="index"
                 v-model="contractType.selected"
-                
+                @ionChange="setJobFilters('contract_type')"
             >
                 {{ contractType.title }}
             </ion-checkbox>
@@ -24,9 +24,10 @@
             <ion-checkbox 
                 v-for="(jobIndustry, index) in jobIndustries"
                 :key="index"
-                @ionChange="() => filterJobs('job_industry', jobIndustry)"
+                v-model="jobIndustry.selected"
+                @ionChange="setJobFilters('job_industry')"
             >
-                {{ jobIndustry }}
+                {{ jobIndustry.title }}
             </ion-checkbox>
         </div>
         <div class="flex flex-col mb-7">
@@ -53,15 +54,16 @@ export default {
     data() {
         return {
             contractTypes: [ 
-                { id: 1, title: 'Intérim', selected: false },
-                { id: 2, title: 'CDD', selected: false },
-                { id: 3, title: 'CDI', selected: false },
+                { title: 'Intérim', selected: false },
+                { title: 'CDD', selected: false },
+                { title: 'CDI', selected: false },
             ],
             jobIndustries: [ 
-                'Livraison', 
-                'Logistique', 
-                'Préparation de colis', 
-                'Opérations de supermarché'
+                { title: 'Livraison', selected: false },
+                { title: 'Logistique', selected: false },
+                { title: 'Préparation de Colis', selected: false },
+                { title: 'Opérations de Supermarché', selected: false },
+                { title: 'Immobilier', selected: false },
             ],
         }
     },
@@ -70,14 +72,28 @@ export default {
         pinFormatter: (value) => `${value}%`,
       };
     },
-    watch: {
-        contractTypes: {
-            handler() {
-               this.$emit('set-job-filters', { 
-                    filterType: 'contract_type', filterValues: this.contractTypes 
+    methods: {
+        setJobFilters(filterType) {
+            if(filterType === 'contract_type') {
+                this.$emit('set-job-filters', { 
+                    filterType: filterType, filterValues: this.contractTypes 
                 });
-            },
-            deep: true
+            } else if(filterType === 'job_industry') {
+                this.$emit('set-job-filters', { 
+                    filterType: filterType, filterValues: this.jobIndustries 
+                });
+            }
+        },
+        resetAllFilters(filterType) {
+            this.$emit('set-job-filters', { filterType: filterType });
+
+            this.contractTypes = this.contractTypes.map(contractType => {
+               return {...contractType, selected: contractType.selected = false };
+            });
+
+            this.jobIndustries = this.jobIndustries.map(jobIndustry => {
+               return {...jobIndustry, selected: jobIndustry.selected = false };
+            });
         }
     }
 };
