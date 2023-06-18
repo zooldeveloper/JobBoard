@@ -85,6 +85,8 @@ export default {
 					let temperaryFilteredJobs = this.jobs.filter(job => {
 						if(job[filterType] === filterValues[i].title && filterValues[i].selected) {
 							return job[filterType].includes(filterValues[i].title);
+						} else if(filterType === 'hourly_rate') {
+							if( job[filterType] <= filterValues[i]) return job;
 						}
 					});
 
