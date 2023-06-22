@@ -1,6 +1,6 @@
 # JobBoard
 
-As its name suggests, it's a job board app that lists different job offers. They can be searched either by job title, city name or even zip code. They can also be filtered either by contract type or job industry. And of course, we can reset all the options to thier initial states.
+As its name suggests, it's a job board app that lists different job offers. They can be searched either by job title, city name or even zip code. They can also be filtered either by contract type, job industry or hourly rate. And of course, we can reset all the options to thier initial states.
 
 The app was built using Ionic components, Vue js, Tailwind and Express server. 
 
